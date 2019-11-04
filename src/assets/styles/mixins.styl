@@ -1,7 +1,8 @@
-$green = #02a774;
-$yellow = #F5A100;
-$bc = #e4e4e4;
-
+$green = #02a774
+$yellow = #F5A100
+$white = #fff
+$bc = #e4e4e4
+$ue-width = 1000 // ue 设计图的宽
 // 一像素下边框
 bottom-border-1px($color)
   position relative
@@ -45,7 +46,9 @@ bg-image($url)
   background-image url($url + "@2x.png")
   @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3)
     background-image url($url + "@3x.png")
-
+// ue图任意元素的px 转化为rem
+px2rem($px)
+  ($px * 100 / $ue-width)rem
 //清除浮动
 clearFix()
   *zoom 1
