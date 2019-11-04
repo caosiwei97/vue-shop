@@ -160,9 +160,34 @@ body {
   -webkit-text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 /* 显示省略号 */
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* 使用 rem vw响应式布局  UE图的宽是1000 */
+html {
+  font-size: 1vw; /* 1vw 代表当前视口宽度的百分之一 */
+}
+
+/* 防止根元素设置了字体与用户默认字体冲突，可以使用媒体查询给body设置默认字体，其他元素可以使用em来设置字体大小 */
+@media only screen and (min-width: 320px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 640px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 641px) {
+  body {
+    font-size: 20px;
+  }
 }
