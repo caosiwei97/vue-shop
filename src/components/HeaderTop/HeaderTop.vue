@@ -4,7 +4,7 @@
     <div class="top-left">
       <slot name="left"></slot>
     </div>
-    <div class="top-center ellipsis">{{ headerTitle || '暂无数据' }}</div>
+    <div class="top-center">{{ headerTitle || '暂无数据' }}</div>
     <!-- 头部右边插槽 -->
     <div class="top-right">
       <slot name="right"></slot>
@@ -38,6 +38,7 @@ export default {
     width 50%
     text-align center
     font-size 1.3em
+    ellipsis()
   .top-right
     position absolute
     right px2rem(15)
