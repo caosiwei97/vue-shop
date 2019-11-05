@@ -1,12 +1,19 @@
 <template>
   <div class="profile">
-    profile
+    <header-top :header-title="title"></header-top>
   </div>
 </template>
 
 <script>
+import HeaderTop from '@/components/HeaderTop/HeaderTop.vue'
 export default {
-  name: 'Profile'
+  name: 'Profile',
+  components: { HeaderTop },
+  data () {
+    return {
+      title: '我的'
+    }
+  }
 }
 </script>
 
