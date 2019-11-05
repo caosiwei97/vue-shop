@@ -65,7 +65,6 @@ $iconColor = #999
     color $iconColor
     & > div
       font-size .75em
-      margin-top px2rem(2)
       .iconfont
         font-size 2em
 </style>
