@@ -42,8 +42,6 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-$borderColor = #e4e4e4
-$iconColor = #999
 .router-link-active
   color $yellow !important
 .footer-guide
