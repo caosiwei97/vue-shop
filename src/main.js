@@ -2,7 +2,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import '@/assets/styles/reset.css'
+import 'styles/reset.css'
+import 'styles/iconfont/iconfont.css'
 import attachFastClick from 'fastclick'// 解决移动端浏览器点击300ms延迟
 
 attachFastClick.attach(document.body)
