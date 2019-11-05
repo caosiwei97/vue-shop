@@ -16,18 +16,22 @@ export default new Router({
     },
     {
       path: '/home',
+      name: '外卖',
       component: Home
     },
     {
       path: '/search',
+      name: '搜索',
       component: Search
     },
     {
       path: '/order',
+      name: '订单',
       component: Order
     },
     {
       path: '/profile',
+      name: '我的',
       component: Profile
     }
   ]
