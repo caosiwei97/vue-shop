@@ -161,13 +161,6 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/* 显示省略号 */
-.ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 /* 使用 rem vw响应式布局  UE图的宽是1000 */
 html {
   font-size: 1vw; /* 1vw 代表当前视口宽度的百分之一 */

@@ -1,7 +1,9 @@
 $green = #02a774
 $yellow = #F5A100
 $white = #fff
-$bc = #e4e4e4
+$borderColor = #e4e4e4
+$iconColor = #999
+$navTextColor = #666
 $ue-width = 1000 // ue 设计图的宽
 // 一像素下边框
 bottom-border-1px($color)
@@ -56,3 +58,8 @@ clearFix()
     content ''
     display block
     clear both
+/* 显示省略号 */
+ellipsis()
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
