@@ -69,22 +69,14 @@ export default {
     position relative
     width 25%
     height 0
-    padding-bottom 23%
+    padding-bottom 25%
     .swiper-icon
-      position absolute
-      left 0
-      right 0
-      top 0
       margin-bottom px2rem(10)
       & > img
         width px2rem(50)
         display block
         margin 0 auto
     .swiper-title
-      position absolute
-      left 0
-      right 0
-      bottom px2rem(15)
       text-align center
       font-size .8125em
       color $navTextColor
