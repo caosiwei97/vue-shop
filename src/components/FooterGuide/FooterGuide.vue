@@ -51,6 +51,7 @@ export default {
   left 0
   right 0
   bottom 0
+  background-color $white
   height px2rem(50)
   display flex
   .guide-item
