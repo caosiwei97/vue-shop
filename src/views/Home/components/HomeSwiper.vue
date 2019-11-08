@@ -63,13 +63,16 @@ export default {
 .home-swiper >>> .swiper-wrapper
   height 0
   padding-bottom 50%
+.home-swiper
+  background-color $white
+  bottom-border-1px($borderColor)
   .swiper-icon-wrapper
     overflow hidden
     float left
-    position relative
     width 25%
     height 0
     padding-bottom 25%
+    position relative
     .swiper-icon
       margin-bottom px2rem(10)
       & > img
