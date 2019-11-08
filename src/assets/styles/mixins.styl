@@ -4,6 +4,7 @@ $white = #fff
 $borderColor = #e4e4e4
 $iconColor = #999
 $navTextColor = #666
+$backgroundColor = #fafafa
 $ue-width = 1000 // ue 设计图的宽
 // 一像素下边框
 bottom-border-1px($color)
@@ -31,6 +32,7 @@ top-border-1px($color)
     width 100%
     height 1px
     background-color $color
+    transform scaleY(0.5)
 
 //根据像素比缩放1px像素边框
 @media only screen and (-webkit-device-pixel-ratio: 2 )
@@ -63,3 +65,9 @@ ellipsis()
   overflow hidden
   text-overflow ellipsis
   white-space nowrap
+// 水平垂直居中 父级需要设置定位
+positionCenter()
+  position absolute
+  left 50%
+  top 50%
+  transform translate(-50%,-50%)
