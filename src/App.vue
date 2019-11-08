@@ -15,4 +15,6 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  #app
+    background-color $backgroundColor
 </style>
