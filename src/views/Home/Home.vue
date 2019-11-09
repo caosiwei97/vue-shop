@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div class="home">
     <!-- header-top -->
     <header-top :header-title="title">
       <!-- left slot -->
@@ -11,14 +11,20 @@
         <span class="top-right-login">登陆|注册</span>
       </template>
     </header-top>
-    <!-- Home-Swiper -->
+    <!-- home-swiper -->
     <home-swiper :icon-lists="iconLists"></home-swiper>
+    <!-- home-shop-lists -->
+    <home-shop-list :shop-lists="shopLists"></home-shop-list>
   </div>
 </template>
 
 <script>
+// component
 import HeaderTop from '@/components/HeaderTop/HeaderTop.vue'
 import HomeSwiper from './components/HomeSwiper.vue'
+import HomeShopList from './components/HomeShopList.vue'
+
+// icon img
 import iconOne from 'images/home/1.jpg'
 import iconTwo from 'images/home/2.jpg'
 import iconThree from 'images/home/3.jpg'
@@ -29,11 +35,18 @@ import iconSeven from 'images/home/7.jpg'
 import iconEight from 'images/home/8.jpg'
 import iconNight from 'images/home/9.jpg'
 
+// shop img
+import shopOne from 'images/shop/1.jpg'
+import shopTwo from 'images/shop/2.jpg'
+import shopThree from 'images/shop/3.jpg'
+import shopFour from 'images/shop/4.jpg'
+
 export default {
   name: 'Home',
   components: {
     HomeSwiper,
-    HeaderTop
+    HeaderTop,
+    HomeShopList
   },
   data () {
     return {
@@ -75,6 +88,56 @@ export default {
           iconUrl: iconNight,
           iconTitle: '甜品饮品'
         }
+      ],
+      shopLists: [
+        {
+          id: '1',
+          shopLink: 'https://www.maomiav.com/',
+          shopImgUrl: shopOne,
+          shopBrandnew: '麦草家',
+          shopService: ['保', '准', '票'],
+          shopScore: '3.7',
+          shopLogo: '老曹专送',
+          shopOrders: '88',
+          shopLowestPrice: '20',
+          shopDeliverPrice: '5'
+        },
+        {
+          id: '2',
+          shopLink: 'https://www.maomiav.com/',
+          shopImgUrl: shopTwo,
+          shopBrandnew: '麦草家',
+          shopService: ['保', '准', '票'],
+          shopScore: '3.7',
+          shopLogo: '老曹专送',
+          shopOrders: '88',
+          shopLowestPrice: '20',
+          shopDeliverPrice: '5'
+        },
+        {
+          id: '3',
+          shopLink: 'https://www.maomiav.com/',
+          shopImgUrl: shopThree,
+          shopBrandnew: '麦草家',
+          shopService: ['保', '准', '票'],
+          shopScore: '3.7',
+          shopLogo: '老曹专送',
+          shopOrders: '88',
+          shopLowestPrice: '20',
+          shopDeliverPrice: '5'
+        },
+        {
+          id: '4',
+          shopLink: 'https://www.maomiav.com/',
+          shopImgUrl: shopFour,
+          shopBrandnew: '麦草家',
+          shopService: ['保', '准', '票'],
+          shopScore: '3.7',
+          shopLogo: '老曹专送',
+          shopOrders: '88',
+          shopLowestPrice: '20',
+          shopDeliverPrice: '5'
+        }
       ]
     }
   }
@@ -82,8 +145,16 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.top-left-search
-  font-size 1.8em
-.top-right-login
-  font-size .875em
+.home {
+  position: relative;
+  padding-top: px2rem(45);
+}
+
+.top-left-search {
+  font-size: 1.8em;
+}
+
+.top-right-login {
+  font-size: .875em;
+}
 </style>
