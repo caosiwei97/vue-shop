@@ -54,6 +54,7 @@ export default {
   background-color $white
   height px2rem(50)
   display flex
+  align-items center
   .guide-item
     display flex
     flex 1
