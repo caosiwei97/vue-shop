@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <footer-guide></footer-guide>
+    <footer-guide v-if="isShowFooterGuide"></footer-guide>
   </div>
 </template>
 
@@ -10,7 +10,12 @@ import FooterGuide from '@/components/FooterGuide/FooterGuide.vue'
 
 export default {
   name: 'App',
-  components: { FooterGuide }
+  components: { FooterGuide },
+  computed: {
+    isShowFooterGuide () {
+      return this.$route.meta.isShowFooterGuide
+    }
+  }
 }
 </script>
 
