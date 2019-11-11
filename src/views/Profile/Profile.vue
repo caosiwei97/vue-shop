@@ -3,7 +3,7 @@
     <header-top :header-title="title"></header-top>
     <!-- login -->
     <section class="profile-login">
-      <a href="#" class="login-link">
+      <router-link :to="{ name: '登陆' }" class="login-link">
         <div class="login-logo">
           <i class="iconfont icongeren"></i>
         </div>
@@ -17,7 +17,7 @@
         <div class="login-button">
           <i class="iconfont iconjiantou1"></i>
         </div>
-      </a>
+      </router-link>
     </section>
     <!-- data -->
     <section class="profile-data">
@@ -71,7 +71,7 @@ export default {
       dataLinks: [
         {
           title: '我的余额',
-          content: '0.00',
+          content: '0.0',
           unit: '元',
           color: '#f90'
         },
