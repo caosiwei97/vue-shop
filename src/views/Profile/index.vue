@@ -1,12 +1,22 @@
 <template>
   <div class="profile">
-    profile
+    <header-slot :header-title="headerTile"></header-slot>
   </div>
 </template>
 
 <script>
+import HeaderSlot from 'components/HeaderSlot'
+
 export default {
-  name: 'Profile'
+  name: 'Profile',
+  components: {
+    HeaderSlot
+  },
+  data() {
+    return {
+      headerTile: '我的'
+    }
+  }
 }
 </script>
 
