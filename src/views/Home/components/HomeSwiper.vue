@@ -64,11 +64,12 @@ export default {
 
 <style scoped lang="stylus">
 .home-swiper >>> .swiper-pagination-bullet-active
-  background-color $yellow
+  background-color $themeColor
 .home-swiper >>> .swiper-wrapper
   height 0
   padding-bottom 50%
 .home-swiper
+  overflow hidden
   background-color $white
   bottom-border-1px($borderColor)
   .swiper-icon-wrapper

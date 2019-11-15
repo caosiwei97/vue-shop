@@ -33,6 +33,6 @@ html {
 /* ipad pro */
 @media screen and (min-width: 1024px) {
   body {
-    font-size: 22px;
+    font-size: 24px;
   }
 }

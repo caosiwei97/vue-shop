@@ -13,12 +13,18 @@
     </header-slot>
     <!-- swiper nav -->
     <home-swiper :icon-lists="iconLists"></home-swiper>
+    <!-- home-shoplist title -->
+    <home-shoplist-title :shoplistTitle="shoplistTitle"></home-shoplist-title>
+    <!-- home-shoplists -->
+    <home-shoplist :shop-lists="shopLists"></home-shoplist>
   </div>
 </template>
 
 <script>
 import HeaderSlot from 'components/HeaderSlot'
 import HomeSwiper from './components/HomeSwiper'
+import HomeShoplist from './components/HomeShoplist'
+import HomeShoplistTitle from './components/HomeShoplistTitle'
 
 // icon img
 import iconOne from 'images/home/1.jpg'
@@ -31,15 +37,24 @@ import iconSeven from 'images/home/7.jpg'
 import iconEight from 'images/home/8.jpg'
 import iconNight from 'images/home/9.jpg'
 
+// shop img
+import shopOne from 'images/shop/1.jpg'
+import shopTwo from 'images/shop/2.jpg'
+import shopThree from 'images/shop/3.jpg'
+import shopFour from 'images/shop/4.jpg'
+
 export default {
   name: 'Home',
   components: {
     HeaderSlot,
-    HomeSwiper
+    HomeSwiper,
+    HomeShoplist,
+    HomeShoplistTitle
   },
   data() {
     return {
       headerTile: '金石滩街道大连民族大学4号公寓',
+      shoplistTitle: '附近商家',
       iconLists: [
         {
           iconUrl: iconOne,
@@ -76,6 +91,56 @@ export default {
         {
           iconUrl: iconNight,
           iconTitle: '甜品饮品'
+        }
+      ],
+      shopLists: [
+        {
+          id: '1',
+          shopLink: 'https://www.4399.com/',
+          shopImgUrl: shopOne,
+          shopBrandnew: '麦草家',
+          shopService: ['保', '准', '票'],
+          shopScore: '3.7',
+          shopLogo: '老曹专送',
+          shopOrders: '88',
+          shopLowestPrice: '20',
+          shopDeliverPrice: '5'
+        },
+        {
+          id: '2',
+          shopLink: 'https://www.4399.com/',
+          shopImgUrl: shopTwo,
+          shopBrandnew: '麦草家',
+          shopService: ['保', '准', '票'],
+          shopScore: '3.7',
+          shopLogo: '老曹专送',
+          shopOrders: '88',
+          shopLowestPrice: '20',
+          shopDeliverPrice: '5'
+        },
+        {
+          id: '3',
+          shopLink: 'https://www.4399.com/',
+          shopImgUrl: shopThree,
+          shopBrandnew: '麦草家',
+          shopService: ['保', '准', '票'],
+          shopScore: '3.7',
+          shopLogo: '老曹专送',
+          shopOrders: '88',
+          shopLowestPrice: '20',
+          shopDeliverPrice: '5'
+        },
+        {
+          id: '4',
+          shopLink: 'https://www.4399.com/',
+          shopImgUrl: shopFour,
+          shopBrandnew: '麦草家',
+          shopService: ['保', '准', '票'],
+          shopScore: '3.7',
+          shopLogo: '老曹专送',
+          shopOrders: '88',
+          shopLowestPrice: '20',
+          shopDeliverPrice: '5'
         }
       ]
     }

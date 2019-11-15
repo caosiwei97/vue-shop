@@ -1,0 +1,140 @@
+<template>
+  <div class="shoplist-container">
+    <ul class="shoplist-wrapper">
+      <!-- item lists -->
+      <li class="shoplist-item" v-for="item in shopLists" :key="item.id">
+        <a :href="item.shopLink" class="item-wrapper">
+          <!-- left -->
+          <div class="item-img">
+            <img :src="item.shopImgUrl" alt="" />
+          </div>
+          <!-- right -->
+          <div class="item-detail">
+            <!-- right header -->
+            <section class="detail-header">
+              <h4 class="header-brandnew">{{ item.shopBrandnew }}</h4>
+              <ul class="header-service">
+                <li
+                  class="service-item"
+                  v-for="(service, index) in item.shopService"
+                  :key="index"
+                >
+                  {{ service }}
+                </li>
+              </ul>
+            </section>
+            <!-- right rating -->
+            <section class="detail-rating">
+              <div class="rating-info">
+                <base-stars :score="~~item.shopScore" :size="24"></base-stars>
+                <div class="score">{{ item.shopScore }}</div>
+                <div class="orders">月售{{ item.shopOrders }}单</div>
+              </div>
+              <div class="rating-logo">{{ item.shopLogo }}</div>
+            </section>
+            <!-- right price -->
+            <section class="detail-price">
+              <p class="price-info">
+                <span class="lowest-price"
+                  >￥{{ item.shopLowestPrice }} 起送</span
+                >
+                <span class="segment">/</span>
+                <span class="deliver-price"
+                  >配送费约￥{{ item.shopDeliverPrice }}</span
+                >
+              </p>
+            </section>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+import BaseStars from 'components/BaseStars'
+export default {
+  name: 'HomeShoplist',
+  props: {
+    shopLists: Array
+  },
+  components: {
+    BaseStars
+  }
+}
+</script>
+
+<style scoped lang="stylus">
+$titleColor = #333
+
+.shoplist-wrapper
+  overflow hidden
+  position relative
+  background $white
+  margin-bottom px2rem(45)
+  .shoplist-item
+    bottom-border-1px($borderColor)
+    .item-wrapper
+        display flex
+        padding px2rem(15) px2rem(8)
+        .item-img
+          flex 1.5
+          padding-right px2rem(10)
+          img
+            display block
+            width 100%
+        .item-detail
+          flex 4
+          color $navTextColor
+          display flex
+          flex-direction column
+          justify-content space-between
+          padding px2rem(10) 0
+          .detail-header
+            width 100%
+            display flex
+            justify-content space-between
+            .header-brandnew
+              width px2rem(140)
+              font-size 1em
+              color $titleColor
+              font-weight bold
+              ellipsis()
+              &::before
+                content '品牌'
+                display inline-block
+                font-size .6875em
+                background rgb(255, 217, 48)
+                margin-right px2rem(5)
+                padding px2rem(2)
+                border-radius px2rem(2)
+                vertical-align middle
+            .header-service
+              display flex
+              align-items center
+              .service-item
+                font-size .6em
+                width px2rem(10)
+                height px2rem(10)
+                color $iconColor
+                border px2rem(1) solid $borderColor
+                padding px2rem(2)
+                border-radius px2rem(2)
+          .detail-rating
+            display flex
+            justify-content space-between
+            align-items center
+            font-size .6em
+            margin px2rem(18) 0 px2rem(20) 0
+            .rating-info
+              display flex
+              .score
+                margin 0 px2rem(4)
+                color #ff6000
+            .rating-logo
+              border px2rem(1) solid #02a774
+              color #02a774
+              padding px2rem(1)
+          .detail-price
+            font-size .75em
+</style>
