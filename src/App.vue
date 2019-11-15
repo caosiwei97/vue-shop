@@ -17,4 +17,6 @@ export default {
 <style lang="stylus">
 #app
   background-color $backgroundColor
+  width 100%
+  height 100%
 </style>

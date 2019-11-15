@@ -1,16 +1,19 @@
 <template>
   <div class="search">
     <header-slot :header-title="headerTile"></header-slot>
+    <search-form></search-form>
   </div>
 </template>
 
 <script>
 import HeaderSlot from 'components/HeaderSlot'
+import SearchForm from './components/SearchForm'
 
 export default {
   name: 'Search',
   components: {
-    HeaderSlot
+    HeaderSlot,
+    SearchForm
   },
   data() {
     return {
@@ -20,4 +23,11 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.search
+  width 100%
+  height 100%
+  overflow hidden
+  background-color $backgroundColor
+  margin-top px2rem(45)
+</style>
