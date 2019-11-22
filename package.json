@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "build": "vue-cli-service build --modern",
+    "test": "vue-cli-service test:unit --mode test",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
