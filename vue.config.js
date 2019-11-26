@@ -1,5 +1,4 @@
 const path = require('path')
-
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -26,5 +25,13 @@ module.exports = {
       .set('styles', resolve('src/assets/styles'))
       .set('images', resolve('src/assets/images'))
       .set('components', resolve('src/components'))
+  },
+  devServer: {
+    proxy: {
+      '/': {
+        target: process.env.VUE_APP_BASE, // 代理地址
+        changeOrigin: true // 是否支持跨域
+      }
+    }
   }
 }
