@@ -5,7 +5,6 @@ import store from '@/store'
 import router from '@/router'
 
 // axios 配置常量定义
-
 const SECONDS = 12 // 请求超时秒数
 
 /**
@@ -54,7 +53,7 @@ const errorHandle = (status, other) => {
 
 // 创建axios实例
 const instance = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: '',
   timeout: 1000 * SECONDS
 })
 
