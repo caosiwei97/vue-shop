@@ -15,6 +15,9 @@ export default {
     isShowFooterGuide() {
       return this.$route.meta.isShowFooterGuide
     }
+  },
+  mounted() {
+    this.$store.dispatch('getAddress')
   }
 }
 </script>
