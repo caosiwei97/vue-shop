@@ -10,7 +10,9 @@ export default {
   // 请求地址信息
   async getAddress({ commit, state }) {
     const geohash = state.latitude + ',' + state.longtitude
-    const { data } = await this.$axios.getLocationApi(geohash)
+    const {
+      data: { data }
+    } = await this.$axios.getLocationApi(geohash)
     commit({
       type: RECEIVE_ADDRESS,
       address: data
@@ -18,7 +20,9 @@ export default {
   },
   // 请求食物分类信息
   async getCategories({ commit }) {
-    const { data } = await this.$axios.getShopCategoryApi()
+    const {
+      data: { data }
+    } = await this.$axios.getShopCategoryApi()
     commit({
       type: RECEIVE_CATEGORIES,
       categories: data
@@ -26,7 +30,9 @@ export default {
   },
   // 请求商家列表信息
   async getShoplists({ commit, state }) {
-    const { data } = await this.$axios.getShoplistsByLocationApi(state)
+    const {
+      data: { data }
+    } = await this.$axios.getShoplistsByLocationApi(state)
     commit({
       type: RECEIVE_SHOPLISTS,
       categories: data
