@@ -25,7 +25,7 @@ export default {
 <style scoped lang="stylus">
 .header-slot
   position fixed
-  z-index 999
+  z-index 9999
   left 0
   right 0
   top 0

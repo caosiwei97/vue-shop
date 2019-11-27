@@ -35,7 +35,7 @@ export default {
     } = await this.$axios.getShoplistsByLocationApi(state)
     commit({
       type: RECEIVE_SHOPLISTS,
-      categories: data
+      shoplists: data
     })
   }
 }

@@ -1,16 +1,13 @@
 <template>
   <div class="shoplist-title">
     <i class="iconfont iconliebiao"></i>
-    <span class="title-shop">{{ shoplistTitle }}</span>
+    <span class="title-shop">附近商家</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HomeShoplistTitle',
-  props: {
-    shoplistTitle: String
-  }
+  name: 'HomeShoplistTitle'
 }
 </script>
 

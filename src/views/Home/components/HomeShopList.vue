@@ -6,41 +6,41 @@
         <a :href="item.shopLink" class="item-wrapper">
           <!-- left -->
           <div class="item-img">
-            <img :src="item.shopImgUrl" alt="" />
+            <img :src="item.image_path" />
           </div>
           <!-- right -->
           <div class="item-detail">
             <!-- right header -->
             <section class="detail-header">
-              <h4 class="header-brandnew">{{ item.shopBrandnew }}</h4>
+              <h4 class="header-brandnew">{{ item.name }}</h4>
               <ul class="header-service">
                 <li
                   class="service-item"
-                  v-for="(service, index) in item.shopService"
-                  :key="index"
+                  v-for="service in item.supports"
+                  :key="service._id"
                 >
-                  {{ service }}
+                  {{ service.icon_name }}
                 </li>
               </ul>
             </section>
             <!-- right rating -->
             <section class="detail-rating">
               <div class="rating-info">
-                <base-stars :score="~~item.shopScore" :size="24"></base-stars>
-                <div class="score">{{ item.shopScore }}</div>
-                <div class="orders">月售{{ item.shopOrders }}单</div>
+                <base-stars :score="~~item.rating" :size="24"></base-stars>
+                <div class="score">{{ item.rating }}</div>
+                <div class="orders">月售{{ item.recent_order_num }}单</div>
               </div>
-              <div class="rating-logo">{{ item.shopLogo }}</div>
+              <div class="rating-logo">{{ item.delivery_mode.text }}</div>
             </section>
             <!-- right price -->
             <section class="detail-price">
               <p class="price-info">
                 <span class="lowest-price"
-                  >￥{{ item.shopLowestPrice }} 起送</span
+                  >￥{{ item.float_minimum_order_amount }} 起送</span
                 >
                 <span class="segment">/</span>
                 <span class="deliver-price"
-                  >配送费约￥{{ item.shopDeliverPrice }}</span
+                  >配送费约￥{{ item.float_delivery_fee }}</span
                 >
               </p>
             </section>
@@ -75,21 +75,20 @@ $titleColor = #333
   .shoplist-item
     bottom-border-1px($borderColor)
     .item-wrapper
-        display flex
-        padding px2rem(15) px2rem(8)
-        .item-img
-          flex 1.5
-          padding-right px2rem(10)
-          img
-            display block
-            width 100%
-        .item-detail
+      display flex
+      padding px2rem(15) px2rem(8)
+      .item-img
+        flex 1.5
+        padding-right px2rem(10)
+        img
+          display block
+          width 100%
+      .item-detail
           flex 4
           color $navTextColor
           display flex
           flex-direction column
           justify-content space-between
-          padding px2rem(10) 0
           .detail-header
             width 100%
             display flex
@@ -132,8 +131,8 @@ $titleColor = #333
                 margin 0 px2rem(4)
                 color #ff6000
             .rating-logo
-              border px2rem(1) solid #02a774
-              color #02a774
+              border px2rem(1) solid $themeColor
+              color $themeColor
               padding px2rem(1)
           .detail-price
             font-size .75em

@@ -8,12 +8,12 @@
           class="swiper-icon-wrapper"
           v-for="(item, index) in page"
           :key="index"
-          href="#"
+          href="item.link"
         >
           <div class="swiper-icon">
-            <img :src="item.iconUrl" :alt="item.iconTitle" />
+            <img :src="BASE_IMG + item.image_url" :alt="item.iconTitle" />
           </div>
-          <p class="swiper-title">{{ item.iconTitle }}</p>
+          <p class="swiper-title">{{ item.title }}</p>
         </a>
       </swiper-slide>
       <!-- 分页圆点 -->
@@ -45,6 +45,9 @@ export default {
     }
   },
   computed: {
+    BASE_IMG() {
+      return process.env.VUE_APP_IMAGE
+    },
     pages() {
       // 分页逻辑 如果 当前页的icon个数大于8就分页，使用二维数据
       const pages = []
