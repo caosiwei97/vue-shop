@@ -1,6 +1,6 @@
 <template>
   <nav class="home-swiper">
-    <swiper :options="swiperOption" ref="mySwiper">
+    <swiper :options="swiperOption" ref="mySwiper" v-if="iconLists.length">
       <!-- 总页数 -->
       <swiper-slide v-for="(page, index) in pages" :key="index">
         <!-- 每页的图标导航 -->
@@ -19,11 +19,13 @@
       <!-- 分页圆点 -->
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
+    <img :src="HomeSwiperSvg" v-else />
   </nav>
 </template>
 
 <script>
 import 'swiper/dist/css/swiper.css'
+import HomeSwiperSvg from 'images/svg/home_swiper.svg'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
@@ -41,7 +43,8 @@ export default {
         pagination: {
           el: '.swiper-pagination'
         }
-      }
+      },
+      HomeSwiperSvg
     }
   },
   computed: {

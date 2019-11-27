@@ -1,6 +1,6 @@
 <template>
   <div class="shoplist-container">
-    <ul class="shoplist-wrapper">
+    <ul class="shoplist-wrapper" v-if="shopLists.length">
       <!-- item lists -->
       <li class="shoplist-item" v-for="item in shopLists" :key="item.id">
         <a :href="item.shopLink" class="item-wrapper">
@@ -48,11 +48,18 @@
         </a>
       </li>
     </ul>
+    <!-- no-list -->
+    <ul v-else>
+      <li v-for="item in 6" :key="item">
+        <img :src="HomeShoplistSvg" />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import BaseStars from 'components/BaseStars'
+import HomeShoplistSvg from 'images/svg/home_shoplist.svg'
 export default {
   name: 'HomeShoplist',
   props: {
@@ -60,6 +67,11 @@ export default {
   },
   components: {
     BaseStars
+  },
+  data() {
+    return {
+      HomeShoplistSvg
+    }
   }
 }
 </script>
