@@ -26,7 +26,7 @@
             <!-- right rating -->
             <section class="detail-rating">
               <div class="rating-info">
-                <base-stars :score="~~item.rating" :size="24"></base-stars>
+                <base-stars :score="item.rating" :size="24"></base-stars>
                 <div class="score">{{ item.rating }}</div>
                 <div class="orders">月售{{ item.recent_order_num }}单</div>
               </div>
