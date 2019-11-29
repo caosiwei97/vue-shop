@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="['base-switch', { switch: isSwitch }]"
-    @click="isSwitch = !isSwitch"
-  >
+  <div :class="['base-switch', { switch: isSwitch }]" @click="handleBtnClick">
     <div :class="['switch-circle', { circle: isSwitch }]"></div>
     <span :class="['switch-text', { text: isSwitch }]">{{ switchText }}</span>
   </div>
@@ -22,6 +19,13 @@ export default {
         return 'abc'
       }
       return '...'
+    }
+  },
+  methods: {
+    handleBtnClick() {
+      this.isSwitch = !this.isSwitch
+      // 向父组件传递`isSwitch`的状态
+      this.$emit('switch', this.isSwitch)
     }
   }
 }
