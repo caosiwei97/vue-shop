@@ -10,7 +10,7 @@
         <div class="login-header">
           <h2 class="header-title">文哲外卖</h2>
           <div class="header-content">
-            <a
+            <div
               href="#"
               v-for="(item, index) in loginWays"
               :key="index"
@@ -18,7 +18,7 @@
               :class="{ active: isActive(item.wayClass) }"
             >
               {{ item.title }}
-            </a>
+            </div>
           </div>
         </div>
         <!-- form -->
@@ -121,7 +121,7 @@ export default {
           font-size .875em
           display flex
           justify-content space-between
-          a
+          div
             color $textColor
             padding-bottom px2rem(4)
             &.active

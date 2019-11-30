@@ -40,7 +40,7 @@
     <!-- svg code -->
     <section class="form-svg_code" v-show="isPasswordWay">
       <input type="tel" maxlength="8" placeholder="验证码" v-model="captcha" />
-      <img :src="captchaImg" />
+      <img :src="captchaUrl" @click.prevent="handleSvgClick" ref="captchaImg" />
     </section>
     <!-- protocol -->
     <section class="form-protocol" v-show="!isPasswordWay">
@@ -58,7 +58,6 @@
 
 <script>
 import BaseSwitch from 'components/BaseSwitch'
-import Captcha from 'images/svg/captcha.svg'
 import { isPhoneNumber, isCode } from '@/utils/validate.js'
 
 export default {
@@ -73,13 +72,13 @@ export default {
     return {
       isActive: false,
       isShowPassword: false, // 是否显示密码
-      captchaImg: Captcha,
       timeCount: 0, // 计时器
       phone: '', // 手机号
       code: '', // 手机验证码
       name: '', // 用户名
       pwd: '', // 密码
-      captcha: '' // svg验证码
+      captcha: '', // svg验证码
+      captchaUrl: `${process.env.VUE_APP_BASE}captcha`
     }
   },
   computed: {
@@ -146,6 +145,10 @@ export default {
     // 向父组件传递消息
     emitMessage(message) {
       this.$emit('checkMessage', message)
+    },
+    // 更新svg
+    handleSvgClick() {
+      this.$refs.captchaImg.src = this.captchaUrl + '?time=' + Date.now()
     }
   }
 }
