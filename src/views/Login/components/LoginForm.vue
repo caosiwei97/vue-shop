@@ -99,17 +99,32 @@ export default {
   },
   methods: {
     // 点击时判断当前是否处于计时状态
-    getMessageCode() {
+    async getMessageCode() {
       // 如果不存在计时就开始计时
+      let timer
       if (!this.timeCount) {
-        this.timeCount = 5
-        let timer = setInterval(() => {
+        this.timeCount = 60
+        timer = setInterval(() => {
           if (this.timeCount === 0) {
             clearInterval(timer)
           } else {
             this.timeCount--
           }
         }, 1000)
+        // 请求验证码
+        try {
+          let { data } = await this.$axios.getMessageCodeApi(this.phone)
+          if (data.code === 1) {
+            this.emitMessage(data.msg)
+            if (this.timeCount) {
+              this.timeCount = 0
+              clearInterval(timer)
+              timer = undefined
+            }
+          }
+        } catch (error) {
+          this.emitMessage('发送验证码失败')
+        }
       }
     },
     // 根据BaseSwitch组件状态来决定是否显示密码

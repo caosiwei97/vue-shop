@@ -74,7 +74,11 @@ function getShopCategoryApi() {
  * @returns {Promise}
  */
 function getMessageCodeApi(phone) {
-  return axios.get(`${url.getMessageCodeUrl}/${phone}`)
+  return axios.get(url.getMessageCodeUrl, {
+    params: {
+      phone
+    }
+  })
 }
 
 /**
@@ -112,11 +116,9 @@ function getUserLogoutApi() {
  */
 function postUserLoginByPasswordApi({ name, pwd, captcha }) {
   return axios.post(url.postUserLoginByPasswordUrl, {
-    params: {
-      name,
-      pwd,
-      captcha
-    }
+    name,
+    pwd,
+    captcha
   })
 }
 
@@ -126,10 +128,10 @@ function postUserLoginByPasswordApi({ name, pwd, captcha }) {
  * @param {*} { phone, messageCode }
  * @returns {Promise}
  */
-function postUserLoginByMessageCodeApi({ phone, messageCode }) {
+function postUserLoginByMessageCodeApi({ phone, code }) {
   return axios.post(url.postUserLoginByMessageCodeUrl, {
     phone,
-    messageCode
+    code
   })
 }
 
