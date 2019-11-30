@@ -58,7 +58,7 @@
 
 <script>
 import BaseSwitch from 'components/BaseSwitch'
-import { isPhoneNumber, isCode } from '@/utils/validate.js'
+import { isPhoneNumber } from '@/utils/validate.js'
 
 export default {
   name: 'LoginForm',
@@ -77,8 +77,7 @@ export default {
       code: '', // 手机验证码
       name: '', // 用户名
       pwd: '', // 密码
-      captcha: '', // svg验证码
-      captchaUrl: `${process.env.VUE_APP_BASE}captcha`
+      captcha: '' // svg验证码
     }
   },
   computed: {
@@ -95,6 +94,10 @@ export default {
       } else {
         return '获取验证码'
       }
+    },
+    // svg url
+    captchaUrl() {
+      return process.env.VUE_APP_BASE + 'captcha'
     }
   },
   methods: {
@@ -103,7 +106,7 @@ export default {
       // 如果不存在计时就开始计时
       let timer
       if (!this.timeCount) {
-        this.timeCount = 60
+        this.timeCount = 5
         timer = setInterval(() => {
           if (this.timeCount === 0) {
             clearInterval(timer)
@@ -136,25 +139,49 @@ export default {
       this.isPasswordWay ? this.checkPasswordWay() : this.checkMessageWay()
     },
     // 验证手机验证码登录方式
-    checkMessageWay() {
+    async checkMessageWay() {
       if (!this.phone) {
         this.emitMessage('请输入手机号')
       } else if (!isPhoneNumber(this.phone)) {
         this.emitMessage('手机号格式错误')
       } else if (!this.code) {
         this.emitMessage('请输入验证码')
-      } else if (!isCode(this.code)) {
-        this.emitMessage('请输入正确的验证码')
+      } else {
+        try {
+          let { data } = await this.$axios.postUserLoginByMessageCodeApi({
+            phone: this.phone,
+            code: this.code
+          })
+          if (data.code === 0) {
+            this.$router.replace({ path: '/profile' })
+          } else {
+            this.emitMessage(data.msg)
+          }
+        } catch (error) {
+          this.emitMessage('登录失败,服务器出错')
+        }
       }
     },
     // 验证用户名密码登录方式
-    checkPasswordWay() {
+    async checkPasswordWay() {
       if (!this.name) {
         this.emitMessage('请输入用户名/邮箱/手机号')
       } else if (!this.pwd) {
         this.emitMessage('请输入密码')
       } else if (!this.captcha) {
         this.emitMessage('请输入验证码')
+      } else {
+        let { data } = await this.$axios.postUserLoginByPasswordApi({
+          name: this.name,
+          pwd: this.pwd,
+          captcha: this.captcha
+        })
+        if (data.code === 1) {
+          this.emitMessage(data.msg)
+          this.handleSvgClick()
+        } else {
+          this.$router.replace({ path: '/profile' })
+        }
       }
     },
     // 向父组件传递消息
