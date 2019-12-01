@@ -10,6 +10,8 @@
     <profile-nav :nav-links="navLinks"></profile-nav>
     <!-- service -->
     <profile-nav :nav-links="serviceLinks"></profile-nav>
+    <!-- logout button -->
+    <base-button class="profile-logout" v-if="isShowButton"></base-button>
   </div>
 </template>
 
@@ -18,6 +20,7 @@ import HeaderSlot from 'components/HeaderSlot'
 import ProfileLogin from './components/ProfileLogin'
 import ProfileData from './components/ProfileData'
 import ProfileNav from './components/ProfileNav'
+import BaseButton from 'components/BaseButton'
 
 export default {
   name: 'Profile',
@@ -25,7 +28,8 @@ export default {
     HeaderSlot,
     ProfileLogin,
     ProfileData,
-    ProfileNav
+    ProfileNav,
+    BaseButton
   },
   data() {
     return {
@@ -75,6 +79,11 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    isShowButton() {
+      return this.$store.state.userInfo['_id']
+    }
   }
 }
 </script>
@@ -85,5 +94,6 @@ export default {
   .profile-login
     margin-top px2rem(45.5)
   .profile-nav
+  .profile-logout
     margin-top px2rem(10)
 </style>
