@@ -48,13 +48,11 @@ export default {
   },
   // 异步获取用户信息,维持状态
   async getUserInfo({ commit }) {
-    const {
-      data: { data }
-    } = await this.$axios.getUserInfoApi()
-    if (data.code === 0) {
+    const { data } = await this.$axios.getUserInfoApi()
+    if (data['data'] && data.code === 0) {
       commit({
         type: RECEIVE_USER_INFO,
-        userInfo: data
+        userInfo: data['data']
       })
     }
   }
