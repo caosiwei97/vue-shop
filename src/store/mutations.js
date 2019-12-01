@@ -4,7 +4,9 @@ import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORIES,
   RECEIVE_SHOPLISTS,
-  RECEIVE_USER_INFO
+  RECEIVE_USER_INFO,
+  RESET_USER_INFO,
+  UPDATE_SVG_TIME
 } from './mutation-types' // 引入Mutation事件类型
 
 export default {
@@ -19,5 +21,11 @@ export default {
   },
   [RECEIVE_USER_INFO](state, { userInfo }) {
     state.userInfo = userInfo
+  },
+  [RESET_USER_INFO](state) {
+    state.userInfo = {}
+  },
+  [UPDATE_SVG_TIME](state, { timeNow }) {
+    state.timeNow = timeNow
   }
 }

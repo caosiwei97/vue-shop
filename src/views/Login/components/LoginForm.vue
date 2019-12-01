@@ -97,7 +97,7 @@ export default {
     },
     // svg url
     captchaUrl() {
-      return process.env.VUE_APP_BASE + 'captcha'
+      return this.$store.getters.captchaUrlTime
     }
   },
   methods: {
@@ -175,7 +175,8 @@ export default {
     },
     // 更新svg
     handleSvgClick() {
-      this.$refs.captchaImg.src = this.captchaUrl + '?time=' + Date.now()
+      this.$store.dispatch('updateTime', Date.now())
+      this.$refs.captchaImg.src = this.captchaUrl
     },
     // 接口处理
     async handleLogin(api, params) {

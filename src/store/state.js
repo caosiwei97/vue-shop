@@ -5,5 +5,7 @@ export default {
   address: {}, // 地址信息
   categories: [], // 食品分类
   shoplists: [], // 商家列表
-  userInfo: {}
+  userInfo: {},
+  proxyUrl: process.env.VUE_APP_BASE, // 代理服务器
+  timeNow: Date.now()
 }

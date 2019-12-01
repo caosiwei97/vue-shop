@@ -11,7 +11,16 @@
     <!-- service -->
     <profile-nav :nav-links="serviceLinks"></profile-nav>
     <!-- logout button -->
-    <base-button class="profile-logout" v-if="isShowButton"></base-button>
+    <base-button
+      class="profile-logout"
+      v-if="isShowButton"
+      @click.native="handleBtnClick"
+    ></base-button>
+    <base-confirm
+      v-if="isShowConfirm"
+      @cancel="handleCancel"
+      @confirm="handleConfirm"
+    ></base-confirm>
   </div>
 </template>
 
@@ -21,6 +30,8 @@ import ProfileLogin from './components/ProfileLogin'
 import ProfileData from './components/ProfileData'
 import ProfileNav from './components/ProfileNav'
 import BaseButton from 'components/BaseButton'
+import BaseConfirm from 'components/BaseConfirm'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Profile',
@@ -29,7 +40,8 @@ export default {
     ProfileLogin,
     ProfileData,
     ProfileNav,
-    BaseButton
+    BaseButton,
+    BaseConfirm
   },
   data() {
     return {
@@ -77,13 +89,31 @@ export default {
           iconColor: 'green',
           iconClassName: 'iconfuwuzhongxin'
         }
-      ]
+      ],
+      isShowConfirm: false
     }
   },
   computed: {
     isShowButton() {
       return this.$store.state.userInfo['_id']
     }
+  },
+  methods: {
+    handleBtnClick() {
+      this.isShowConfirm = true
+    },
+    handleCancel() {
+      this.isShowConfirm = false
+    },
+    handleConfirm() {
+      // 请求退出登录接口
+      this.getUserLogout()
+      // 更新svg时间
+      this.updateTime(Date.now())
+      // 关闭弹窗
+      this.isShowConfirm = false
+    },
+    ...mapActions(['updateTime', 'getUserLogout'])
   }
 }
 </script>

@@ -4,7 +4,9 @@ import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORIES,
   RECEIVE_SHOPLISTS,
-  RECEIVE_USER_INFO
+  RECEIVE_USER_INFO,
+  RESET_USER_INFO,
+  UPDATE_SVG_TIME
 } from './mutation-types' // 引入Mutation事件类型
 
 export default {
@@ -55,5 +57,21 @@ export default {
         userInfo: data['data']
       })
     }
+  },
+  // 用户退出登录
+  async getUserLogout({ commit }) {
+    const { data } = await this.$axios.getUserLogoutApi()
+    if (data && data.code === 0) {
+      commit({
+        type: RESET_USER_INFO
+      })
+    }
+  },
+  // 更新svg
+  updateTime({ commit }, timeNow) {
+    commit({
+      type: UPDATE_SVG_TIME,
+      timeNow
+    })
   }
 }
