@@ -45,6 +45,9 @@ const errorHandle = (status, other) => {
     case 404:
       alert('请求的资源不存在')
       break
+    case 500:
+      alert('服务器错误')
+      break
     default:
       alert(other)
       break

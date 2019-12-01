@@ -139,7 +139,7 @@ export default {
       this.isPasswordWay ? this.checkPasswordWay() : this.checkMessageWay()
     },
     // 验证手机验证码登录方式
-    async checkMessageWay() {
+    checkMessageWay() {
       if (!this.phone) {
         this.emitMessage('请输入手机号')
       } else if (!isPhoneNumber(this.phone)) {
@@ -147,23 +147,14 @@ export default {
       } else if (!this.code) {
         this.emitMessage('请输入验证码')
       } else {
-        try {
-          let { data } = await this.$axios.postUserLoginByMessageCodeApi({
-            phone: this.phone,
-            code: this.code
-          })
-          if (data.code === 0) {
-            this.$router.replace({ path: '/profile' })
-          } else {
-            this.emitMessage(data.msg)
-          }
-        } catch (error) {
-          this.emitMessage('登录失败,服务器出错')
-        }
+        this.handleLogin(this.$axios.postUserLoginByMessageCodeApi, {
+          phone: this.phone,
+          code: this.code
+        })
       }
     },
     // 验证用户名密码登录方式
-    async checkPasswordWay() {
+    checkPasswordWay() {
       if (!this.name) {
         this.emitMessage('请输入用户名/邮箱/手机号')
       } else if (!this.pwd) {
@@ -171,17 +162,11 @@ export default {
       } else if (!this.captcha) {
         this.emitMessage('请输入验证码')
       } else {
-        let { data } = await this.$axios.postUserLoginByPasswordApi({
+        this.handleLogin(this.$axios.postUserLoginByPasswordApi, {
           name: this.name,
           pwd: this.pwd,
           captcha: this.captcha
         })
-        if (data.code === 1) {
-          this.emitMessage(data.msg)
-          this.handleSvgClick()
-        } else {
-          this.$router.replace({ path: '/profile' })
-        }
       }
     },
     // 向父组件传递消息
@@ -191,6 +176,25 @@ export default {
     // 更新svg
     handleSvgClick() {
       this.$refs.captchaImg.src = this.captchaUrl + '?time=' + Date.now()
+    },
+    // 接口处理
+    async handleLogin(api, params) {
+      try {
+        let { data } = await api(params)
+        if (data.code === 1) {
+          this.emitMessage(data.msg)
+          this.handleSvgClick()
+        } else {
+          // 在vuex存储个人信息
+          const userInfo = data.data
+          this.$store.dispatch('updateUserInfo', userInfo)
+          // 跳转
+          this.$router.replace({ path: '/profile' })
+        }
+      } catch (error) {
+        this.handleSvgClick()
+        this.emitMessage('登录失败,服务器出错')
+      }
     }
   }
 }

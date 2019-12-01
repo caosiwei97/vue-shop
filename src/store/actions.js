@@ -3,7 +3,8 @@
 import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORIES,
-  RECEIVE_SHOPLISTS
+  RECEIVE_SHOPLISTS,
+  RECEIVE_USER_INFO
 } from './mutation-types' // 引入Mutation事件类型
 
 export default {
@@ -37,5 +38,24 @@ export default {
       type: RECEIVE_SHOPLISTS,
       shoplists: data
     })
+  },
+  // 同步更新用户信息
+  updateUserInfo({ commit }, userInfo) {
+    commit({
+      type: RECEIVE_USER_INFO,
+      userInfo
+    })
+  },
+  // 异步获取用户信息,维持状态
+  async getUserInfo({ commit }) {
+    const {
+      data: { data }
+    } = await this.$axios.getUserInfoApi()
+    if (data.code === 0) {
+      commit({
+        type: RECEIVE_USER_INFO,
+        userInfo: data
+      })
+    }
   }
 }

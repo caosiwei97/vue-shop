@@ -1,14 +1,17 @@
 <template>
   <section class="profile-login">
-    <router-link :to="{ name: '登陆' }" class="login-link">
+    <router-link
+      :to="userInfo['_id'] ? { path: '/userInfo' } : { path: '/login' }"
+      class="login-link"
+    >
       <div class="login-logo">
         <i class="iconfont icongeren2"></i>
       </div>
       <div class="login-info">
-        <P>登陆/注册</P>
+        <P v-show="!userInfo['phone']">{{ userInfo['name'] || '登陆/注册' }}</P>
         <p>
           <i class="iconfont iconshouji"></i>
-          <span>暂无绑定手机号</span>
+          <span>{{ userInfo['phone'] || '暂无绑定手机号' }}</span>
         </p>
       </div>
       <div class="login-button">
@@ -19,8 +22,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'ProfileLogin'
+  name: 'ProfileLogin',
+  computed: {
+    ...mapState(['userInfo'])
+  }
 }
 </script>
 

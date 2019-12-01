@@ -3,7 +3,8 @@
 import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORIES,
-  RECEIVE_SHOPLISTS
+  RECEIVE_SHOPLISTS,
+  RECEIVE_USER_INFO
 } from './mutation-types' // 引入Mutation事件类型
 
 export default {
@@ -15,5 +16,8 @@ export default {
   },
   [RECEIVE_SHOPLISTS](state, { shoplists }) {
     state.shoplists = shoplists
+  },
+  [RECEIVE_USER_INFO](state, { userInfo }) {
+    state.userInfo = userInfo
   }
 }

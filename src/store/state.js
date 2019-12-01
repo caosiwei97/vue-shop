@@ -4,5 +4,6 @@ export default {
   longtitude: 121.97835, // 经度
   address: {}, // 地址信息
   categories: [], // 食品分类
-  shoplists: [] // 商家列表
+  shoplists: [], // 商家列表
+  userInfo: {}
 }
