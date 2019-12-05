@@ -6,6 +6,7 @@ import api from '@/api'
 import 'styles/css/reset.css'
 import 'styles/css/layout.css'
 import 'styles/css/iconfont.css'
+import '@/mock'
 
 Vue.prototype.$axios = api // 将所有api请求挂在Vue原型中
 Vue.config.productionTip = false
