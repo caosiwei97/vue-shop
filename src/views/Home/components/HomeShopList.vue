@@ -2,7 +2,12 @@
   <div class="shoplist-container">
     <ul class="shoplist-wrapper" v-if="shopLists.length">
       <!-- item lists -->
-      <li class="shoplist-item" v-for="item in shopLists" :key="item.id">
+      <li
+        class="shoplist-item"
+        v-for="item in shopLists"
+        :key="item.id"
+        @click="handleListClick"
+      >
         <a :href="item.shopLink" class="item-wrapper">
           <!-- left -->
           <div class="item-img">
@@ -71,6 +76,11 @@ export default {
   data() {
     return {
       HomeShoplistSvg
+    }
+  },
+  methods: {
+    handleListClick() {
+      this.$router.push('/shop')
     }
   }
 }
