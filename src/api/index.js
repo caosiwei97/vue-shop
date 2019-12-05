@@ -15,7 +15,26 @@ const url = {
   getUserLogoutUrl: '/logout',
   getCaptchaUrl: '/captcha',
   postUserLoginByPasswordUrl: '/login_pwd',
-  postUserLoginByMessageCodeUrl: '/login_sms'
+  postUserLoginByMessageCodeUrl: '/login_sms',
+  // mock
+  getShopFoodListsUrl: '/foods',
+  getShopCommendListsUrl: '/commends',
+  getShopInfoUrl: '/info'
+}
+
+// 商家食物列表
+function getShopFoodListsApi() {
+  return axios.get(url.getShopFoodListsUrl)
+}
+
+// 商家评论列表
+function getShopCommendListsApi() {
+  return axios.get(url.getShopCommendListsUrl)
+}
+
+// 商家信息
+function getShopInfoUrlApi() {
+  return axios.get(url.getShopInfoUrl)
 }
 
 /**
@@ -145,5 +164,9 @@ export default {
   getCaptchaApi,
   getUserLogoutApi,
   postUserLoginByPasswordApi,
-  postUserLoginByMessageCodeApi
+  postUserLoginByMessageCodeApi,
+  //mock
+  getShopFoodListsApi,
+  getShopCommendListsApi,
+  getShopInfoUrlApi
 }

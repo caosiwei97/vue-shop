@@ -7,5 +7,8 @@ export default {
   shoplists: [], // 商家列表
   userInfo: {},
   proxyUrl: process.env.VUE_APP_BASE, // 代理服务器
-  timeNow: Date.now()
+  timeNow: Date.now(),
+  foodLists: [], // 商家食物列表
+  commendLists: [], // 商家评论列表
+  info: {} // 商家信息
 }

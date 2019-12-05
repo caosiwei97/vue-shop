@@ -6,7 +6,10 @@ import {
   RECEIVE_SHOPLISTS,
   RECEIVE_USER_INFO,
   RESET_USER_INFO,
-  UPDATE_SVG_TIME
+  UPDATE_SVG_TIME,
+  RECEIVE_SHOP_FOODS,
+  RECEIVE_SHOP_COMMENDS,
+  RECEIVE_SHOP_INFO
 } from './mutation-types' // 引入Mutation事件类型
 
 export default {
@@ -21,6 +24,7 @@ export default {
       address: data
     })
   },
+
   // 请求食物分类信息
   async getCategories({ commit }) {
     const {
@@ -73,5 +77,35 @@ export default {
       type: UPDATE_SVG_TIME,
       timeNow
     })
+  },
+  // 请求商家食物列表
+  async getShopLists({ commit }) {
+    const { data } = await this.$axios.getShopFoodListsApi()
+    if (data.code === 0) {
+      commit({
+        type: RECEIVE_SHOP_FOODS,
+        foodLists: data
+      })
+    }
+  },
+  // 请求商家评论列表
+  async getCommendLists({ commit }) {
+    const { data } = await this.$axios.getShopCommendListsApi()
+    if (data.code === 0) {
+      commit({
+        type: RECEIVE_SHOP_COMMENDS,
+        commendLists: data
+      })
+    }
+  },
+  // 请求商家食物列表
+  async getShopInfo({ commit }) {
+    const { data } = await this.$axios.getShopInfoUrlApi()
+    if (data.code === 0) {
+      commit({
+        type: RECEIVE_SHOP_INFO,
+        info: data
+      })
+    }
   }
 }

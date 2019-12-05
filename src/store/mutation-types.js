@@ -6,3 +6,6 @@ export const RECEIVE_SHOPLISTS = 'receive_shoplists' // 接受商家列表信息
 export const RECEIVE_USER_INFO = 'receive_user_info' // 接受用户信息
 export const RESET_USER_INFO = 'reset_user_info' // 重置用户信息
 export const UPDATE_SVG_TIME = 'update_svg_time' // 更新svg time
+export const RECEIVE_SHOP_FOODS = 'receive_shop_foods' // 商家食物列表
+export const RECEIVE_SHOP_COMMENDS = 'receive_shop_commends' // 商家评论列表
+export const RECEIVE_SHOP_INFO = 'receive_shop_info' // 商家信息
