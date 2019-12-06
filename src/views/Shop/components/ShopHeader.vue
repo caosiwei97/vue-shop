@@ -76,7 +76,7 @@
             <span>公告</span>
             <p>{{ info.bulletin }}</p>
           </div>
-          <div class="card-close" @click="toggleShopCard"></div>
+          <div class="card-close" @click.stop="toggleShopCard"></div>
         </div>
       </div>
     </transition>
@@ -103,7 +103,7 @@
               <span class="discount-detail">{{ item.content }}</span>
             </p>
           </div>
-          <div class="card-close" @click="toggleDiscountCard"></div>
+          <div class="card-close" @click.stop="toggleDiscountCard"></div>
         </div>
       </div>
     </transition>
