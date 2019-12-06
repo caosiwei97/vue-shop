@@ -40,7 +40,11 @@
     </div>
     <!-- 显示商家详细信息 -->
     <transition name="fade">
-      <div class="header-show-detail" v-show="isShowShopCard">
+      <div
+        class="header-show-detail"
+        v-show="isShowShopCard"
+        @click="toggleShopCard"
+      >
         <div class="detail-card">
           <h3 class="card-title">
             <span class="title-brandnew">品牌</span>
@@ -78,7 +82,11 @@
     </transition>
     <!-- 显示优惠 -->
     <transition name="fade">
-      <div class="header-show-discount" v-if="isShowDiscountCard">
+      <div
+        class="header-show-discount"
+        v-if="isShowDiscountCard"
+        @click="toggleDiscountCard"
+      >
         <div class="discount-card">
           <h3 class="card-title">优惠活动</h3>
           <div class="card-content">
