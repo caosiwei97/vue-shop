@@ -18,6 +18,7 @@
 
 <script>
 import ShopHeader from './components/ShopHeader'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Shop',
@@ -25,7 +26,10 @@ export default {
     ShopHeader
   },
   mounted() {
-    this.$store.dispatch('getShopLists')
+    this.getShopInfo()
+  },
+  methods: {
+    ...mapActions(['getShopInfo'])
   }
 }
 </script>
@@ -33,6 +37,7 @@ export default {
 <style lang="stylus" scoped>
 .shop
   overflow hidden
+  height 100%
   .shop-routers
     display flex
     bottom-border-1px($borderColor)

@@ -84,7 +84,7 @@ export default {
     if (data.code === 0) {
       commit({
         type: RECEIVE_SHOP_FOODS,
-        foodLists: data
+        foodLists: data['data']
       })
     }
   },
@@ -94,7 +94,7 @@ export default {
     if (data.code === 0) {
       commit({
         type: RECEIVE_SHOP_COMMENDS,
-        commendLists: data
+        commendLists: data['data']
       })
     }
   },
@@ -104,7 +104,7 @@ export default {
     if (data.code === 0) {
       commit({
         type: RECEIVE_SHOP_INFO,
-        info: data
+        info: data['data']
       })
     }
   }
