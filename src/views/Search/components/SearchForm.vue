@@ -30,7 +30,7 @@ export default {
     font-size .875em
   input[type="text"]
     flex 4
-    color #333
+    color $textColor
     background-color #f2f2f2
     padding-left px2rem(10)
   input[type="submit"]

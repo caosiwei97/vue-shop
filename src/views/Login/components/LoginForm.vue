@@ -202,7 +202,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-$textColor = #333
 $btnColor = #ccc
 $inputBorder = #ddd
 

@@ -82,7 +82,7 @@ export default {
       .top-message
         padding-top px2rem(5)
         font-size .8em
-        color #333
+        color $textColor
     .alert-bottom
       flex 1
       width 100%

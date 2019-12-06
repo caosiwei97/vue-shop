@@ -87,8 +87,6 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-$titleColor = #333
-
 .shoplist-wrapper
   overflow hidden
   position relative
@@ -118,7 +116,7 @@ $titleColor = #333
             .header-brandnew
               width px2rem(140)
               font-size 1em
-              color $titleColor
+              color $textColor
               font-weight bold
               ellipsis()
               &::before
