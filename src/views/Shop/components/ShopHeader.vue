@@ -235,10 +235,10 @@ export default {
       height 30%
       padding px2rem(15) px2rem(10)
       positionCenter()
-      background $white
       border-radius px2rem(10)
       box-sizing border-box
       text-align center
+      background $white
       .card-title
         .title-brandnew
           padding px2rem(2)
@@ -299,8 +299,8 @@ export default {
           position absolute
           width px2rem(2)
           height px2rem(18)
-          background $white
           transform-origin center
+          background $white
         &::before
           transform rotate(45deg)
         &::after
@@ -312,8 +312,8 @@ export default {
       bottom 0
       left 0
       right 0
-      background-color $white
       padding px2rem(20)
+      background $white
       .card-title
         font-weight bold
         font-size 1.5em

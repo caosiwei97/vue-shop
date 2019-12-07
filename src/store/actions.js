@@ -98,7 +98,7 @@ export default {
       })
     }
   },
-  // 请求商家食物列表
+  // 请求商家详情
   async getShopInfo({ commit }) {
     const { data } = await this.$axios.getShopInfoUrlApi()
     if (data.code === 0) {

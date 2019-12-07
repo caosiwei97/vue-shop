@@ -27,9 +27,10 @@ export default {
   },
   mounted() {
     this.getShopInfo()
+    this.getShopLists()
   },
   methods: {
-    ...mapActions(['getShopInfo'])
+    ...mapActions(['getShopInfo', 'getShopLists'])
   }
 }
 </script>
@@ -39,10 +40,10 @@ export default {
   overflow hidden
   height 100%
   position relative
+  background $white
   .shop-routers
     display flex
     bottom-border-1px($borderColor)
-    background $white
     .router-link
       flex 1
       text-align center

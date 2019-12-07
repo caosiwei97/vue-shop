@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
     <footer-guide v-if="isShowFooterGuide"></footer-guide>
   </div>
 </template>
