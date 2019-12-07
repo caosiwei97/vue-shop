@@ -84,7 +84,7 @@
     <transition name="fade">
       <div
         class="header-show-discount"
-        v-if="isShowDiscountCard"
+        v-show="isShowDiscountCard"
         @click="toggleDiscountCard"
       >
         <div class="discount-card">
@@ -146,8 +146,6 @@ export default {
 .shop-header
   background $white
   overflow hidden
-  position relative
-  height 100%
   .header-nav
     width 100%
     height px2rem(50)
@@ -231,6 +229,7 @@ export default {
     bottom 0
     height 100%
     background rgba(0, 0, 0, 0.5)
+    z-index 9999
     .detail-card
       width 90%
       height 30%

@@ -38,9 +38,11 @@ export default {
 .shop
   overflow hidden
   height 100%
+  position relative
   .shop-routers
     display flex
     bottom-border-1px($borderColor)
+    background $white
     .router-link
       flex 1
       text-align center
