@@ -1,7 +1,11 @@
 <template>
   <div class="shop-header">
     <!-- ?? -->
-    <nav class="header-nav" :style="{ backgroundImage: `url(${info.bgImg})` }">
+    <nav
+      class="header-nav"
+      :style="{ backgroundImage: `url(${info.bgImg})` }"
+      v-if="info.bgImg"
+    >
       <router-link class="nav-link" :to="{ path: '/home' }">
         <i class="iconfont iconicon_arrow_left"></i>
       </router-link>
@@ -124,6 +128,9 @@ export default {
       isShowDiscountCard: false,
       discountColor: ['orange', 'red', 'yellowgreen']
     }
+  },
+  mounted() {
+    this.$store.dispatch('getShopInfo')
   },
   methods: {
     toggleShopCard() {

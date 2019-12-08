@@ -12,25 +12,19 @@
         <span>商家</span>
       </router-link>
     </div>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
 import ShopHeader from './components/ShopHeader'
-import { mapActions } from 'vuex'
 
 export default {
   name: 'Shop',
   components: {
     ShopHeader
-  },
-  mounted() {
-    this.getShopInfo()
-    this.getShopLists()
-  },
-  methods: {
-    ...mapActions(['getShopInfo', 'getShopLists'])
   }
 }
 </script>

@@ -54,11 +54,35 @@
 
 <script>
 import { mapState } from 'vuex'
+import BScroll from '@better-scroll/core' // 引入滑动库
 
 export default {
   name: 'ShopFoods',
+  data() {
+    return {
+      scrollY: 0, // 右边滑动距离
+      tops: [] // 右边初始化每个食物分类顶部li的坐标距离
+    }
+  },
   computed: {
     ...mapState(['foodLists'])
+  },
+  mounted() {
+    // 请求数据后才初始化Bscroll
+    this.$store.dispatch('getShopLists', () => {
+      this.$nextTick(() => {
+        this._initCategoryScroll()
+        this._initDetailScroll()
+      })
+    })
+  },
+  methods: {
+    _initCategoryScroll() {
+      new BScroll('.foods-category')
+    },
+    _initDetailScroll() {
+      new BScroll('.foods-detail')
+    }
   }
 }
 </script>
@@ -138,6 +162,7 @@ export default {
               padding-top px2rem(5)
               >span:first-child
                 color red
-              >span:last-child
+              >del
+                padding-left px2rem(5)
                 color $iconColor
 </style>

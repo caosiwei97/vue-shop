@@ -79,7 +79,7 @@ export default {
     })
   },
   // 请求商家食物列表
-  async getShopLists({ commit }) {
+  async getShopLists({ commit }, callback) {
     const { data } = await this.$axios.getShopFoodListsApi()
     if (data.code === 0) {
       commit({
@@ -87,6 +87,7 @@ export default {
         foodLists: data['data']
       })
     }
+    callback && callback()
   },
   // 请求商家评论列表
   async getCommendLists({ commit }) {
