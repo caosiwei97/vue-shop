@@ -4,11 +4,11 @@
       <div
         class="control-decrease"
         v-if="food.count"
-        @click="updateControlNum(false)"
+        @click.stop="updateControlNum(false)"
       ></div>
     </transition>
     <div class="control-num" v-if="food.count">{{ food.count }}</div>
-    <div class="control-add" @click="updateControlNum(true)"></div>
+    <div class="control-add" @click.stop="updateControlNum(true)"></div>
   </div>
 </template>
 

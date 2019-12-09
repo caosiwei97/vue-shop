@@ -1,65 +1,74 @@
 <template>
-  <div class="shop-foods">
-    <!-- 左栏分类 -->
-    <div class="foods-category">
-      <ul class="category-list" ref="category">
-        <li
-          :class="[
-            'list-item',
-            { 'list-item-current': currentIndex === index }
-          ]"
-          v-for="(item, index) in foodLists"
-          :key="index"
-          @click="handleCategoryClick(index)"
-        >
-          <div class="item-detail">
-            <img :src="item.icon" v-if="item.icon" />
-            {{ item.name }}
-          </div>
-        </li>
-      </ul>
-    </div>
-    <!-- 右栏食物分类详情 -->
-    <div class="foods-detail">
-      <!-- 每个分类 -->
-      <ul class="detail-category" ref="detail">
-        <li
-          class="category-block"
-          v-for="(category, index) in foodLists"
-          :key="index"
-        >
-          <!-- 分类名 -->
-          <h1 class="category-title">{{ category.name }}</h1>
-          <!-- 当前分类下所有食物 -->
-          <ul class="category-list">
-            <li
-              class="list-item"
-              v-for="(food, index) in category.foods"
-              :key="index"
-            >
-              <div class="item-left">
-                <img :src="food.icon" />
-              </div>
-              <div class="item-right">
-                <h3 class="item-name">{{ food.name }}</h3>
-                <p class="item-description">{{ food.description }}</p>
-                <div class="item-data">
-                  <span>月售{{ food.sellCount }}份</span>
-                  <span>好评率{{ food.rating }}%</span>
+  <div class="shop-foods-wrapper">
+    <div class="shop-foods">
+      <!-- 左栏分类 -->
+      <div class="foods-category">
+        <ul class="category-list" ref="category">
+          <li
+            :class="[
+              'list-item',
+              { 'list-item-current': currentIndex === index }
+            ]"
+            v-for="(item, index) in foodLists"
+            :key="index"
+            @click="handleCategoryClick(index)"
+          >
+            <div class="item-detail">
+              <img :src="item.icon" v-if="item.icon" />
+              {{ item.name }}
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- 右栏食物分类详情 -->
+      <div class="foods-detail">
+        <!-- 每个分类 -->
+        <ul class="detail-category" ref="detail">
+          <li
+            class="category-block"
+            v-for="(category, index) in foodLists"
+            :key="index"
+          >
+            <!-- 分类名 -->
+            <h1 class="category-title">{{ category.name }}</h1>
+            <!-- 当前分类下所有食物 -->
+            <ul class="category-list">
+              <li
+                class="list-item"
+                v-for="(food, index) in category.foods"
+                :key="index"
+                @click="handleFoodClick(food)"
+              >
+                <div class="item-left">
+                  <img :src="food.icon" />
                 </div>
-                <div class="item-price">
-                  <span>￥{{ food.price }}</span>
-                  <del v-if="food.oldPrice">￥{{ food.oldPrice }}</del>
+                <div class="item-right">
+                  <h3 class="item-name">{{ food.name }}</h3>
+                  <p class="item-description">{{ food.description }}</p>
+                  <div class="item-data">
+                    <span>月售{{ food.sellCount }}份</span>
+                    <span>好评率{{ food.rating }}%</span>
+                  </div>
+                  <div class="item-price">
+                    <span>￥{{ food.price }}</span>
+                    <del v-if="food.oldPrice">￥{{ food.oldPrice }}</del>
+                  </div>
                 </div>
-              </div>
-              <div class="item-card">
-                <card-control :food="food"></card-control>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
+                <div class="item-card">
+                  <card-control :food="food"></card-control>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
+    <food-show
+      :food="currentFood"
+      v-if="isShowFoodCard"
+      @close="handleFoodClose"
+    >
+    </food-show>
   </div>
 </template>
 
@@ -67,17 +76,21 @@
 import { mapState } from 'vuex'
 import BScroll from '@better-scroll/core' // 引入滑动库
 import CardControl from 'components/CardControl'
+import FoodShow from 'components/FoodShow'
 
 export default {
   name: 'ShopFoods',
   components: {
-    CardControl
+    CardControl,
+    FoodShow
   },
   data() {
     return {
       scrollY: 0, // 右边滑动距离
       detailTops: [], // 右边每个食物分类顶部li的坐标距离
-      categoryTops: [] // 左边每个食物分类顶部li的坐标距离
+      categoryTops: [], // 左边每个食物分类顶部li的坐标距离
+      currentFood: {}, // 存储当前食物信息
+      isShowFoodCard: false // 是否显示食物的卡片信息
     }
   },
   computed: {
@@ -105,15 +118,15 @@ export default {
     })
   },
   methods: {
+    // 初始化Category的Bscroll对象
     _initCategoryScroll() {
-      // 初始化Bscroll对象
       this.categoryScroll = new BScroll('.foods-category', {
         click: true
       })
       this.categoryTops = this._getClientHeight('category')
     },
+    // 初始化Detail的Bscroll对象
     _initDetailScroll() {
-      // 初始化Bscroll对象
       this.detailScroll = new BScroll('.foods-detail', {
         probeType: 3,
         scrollY: true,
@@ -140,100 +153,111 @@ export default {
 
       return tempArr
     },
+    // 处理左边分类导航的点击事件
     handleCategoryClick(index) {
       // 点击左边分类，右边滑到目标位置
       this.detailScroll.scrollTo(0, -this.detailTops[index], 300)
+    },
+    // 处理食物的点击事件
+    handleFoodClick(food) {
+      this.currentFood = food
+      this.isShowFoodCard = !this.isShowFoodCard
+    },
+    // 是否关闭食物卡片
+    handleFoodClose(isClose) {
+      this.isShowFoodCard = !isClose
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.shop-foods
-  overflow hidden
-  position absolute
-  top px2rem(200)
-  bottom px2rem(50)
-  background $white
-  display flex
-  width 100%
-  margin-top px2rem(1)
-  .foods-category
-    flex 1
-    background $backgroundColor
-    .category-list
-      .list-item
-        width 100%
-        height px2rem(50)
-        display table
-        text-align center
-        .item-detail
-          display table-cell
-          font-size .8em
-          height 100%
-          line-height 4
-          bottom-border-1px(rgba(7, 17, 27, 0.2))
-          >img
-            vertical-align middle
-            width px2rem(12)
-      .list-item-current
-        background $white
-        color $themeColor
-  .foods-detail
-    flex 4
-    .detail-category
-      .category-title
-        padding px2rem(10) 0 px2rem(10) px2rem(10)
-        background $backgroundColor
-        font-size .8em
-        color $iconColor
-        position relative
-        &::before
-          content ''
-          position absolute
-          width px2rem(2)
-          height 100%
-          background #cbc8c8
-          left 0
-          top 0
+.shop-foods-wrapper
+  .shop-foods
+    overflow hidden
+    position absolute
+    top px2rem(200)
+    bottom px2rem(50)
+    background $white
+    display flex
+    width 100%
+    margin-top px2rem(1)
+    .foods-category
+      flex 1
+      background $backgroundColor
       .category-list
-        padding-left px2rem(10)
         .list-item
-          display flex
-          align-items center
-          padding px2rem(10) 0 px2rem(20) 0
-          bottom-border-1px(#d3cdcd)
-          position relative
-          .item-left
-            flex 1
+          width 100%
+          height px2rem(50)
+          display table
+          text-align center
+          .item-detail
+            display table-cell
+            font-size .8em
+            height 100%
+            line-height 4
+            bottom-border-1px(rgba(7, 17, 27, 0.2))
             >img
-              width px2rem(80)
-          .item-right
-            flex 3
-            display flex
-            flex-direction column
-            justify-content space-between
-            padding-left px2rem(5)
-            .item-name
-              color $textColor
-            .item-description
-            .item-data
-              font-size .8em
-              color $iconColor
-              >span:first-child
-                margin-right px2rem(10)
-            .item-description
-              margin px2rem(5) 0
-            .item-price
-              padding-top px2rem(5)
-              >span:first-child
-                color red
-              >del
-                padding-left px2rem(5)
-                color $iconColor
-                font-size .8em
-          .item-card
+              vertical-align middle
+              width px2rem(12)
+        .list-item-current
+          background $white
+          color $themeColor
+    .foods-detail
+      flex 4
+      .detail-category
+        .category-title
+          padding px2rem(10) 0 px2rem(10) px2rem(10)
+          background $backgroundColor
+          font-size .8em
+          color $iconColor
+          position relative
+          &::before
+            content ''
             position absolute
-            right px2rem(20)
-            bottom px2rem(20)
+            width px2rem(2)
+            height 100%
+            background #cbc8c8
+            left 0
+            top 0
+        .category-list
+          padding-left px2rem(10)
+          .list-item
+            display flex
+            align-items center
+            padding px2rem(10) 0 px2rem(20) 0
+            bottom-border-1px(#d3cdcd)
+            position relative
+            .item-left
+              flex 1
+              >img
+                width px2rem(80)
+            .item-right
+              flex 3
+              display flex
+              flex-direction column
+              justify-content space-between
+              padding-left px2rem(5)
+              .item-name
+                color $textColor
+              .item-description
+              .item-data
+                font-size .8em
+                color $iconColor
+                >span:first-child
+                  margin-right px2rem(10)
+              .item-description
+                margin px2rem(5) 0
+              .item-price
+                padding-top px2rem(5)
+                >span:first-child
+                  color red
+                >del
+                  padding-left px2rem(5)
+                  color $iconColor
+                  font-size .8em
+            .item-card
+              position absolute
+              right px2rem(20)
+              bottom px2rem(20)
 </style>
