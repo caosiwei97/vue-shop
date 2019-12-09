@@ -52,6 +52,9 @@
                   <del v-if="food.oldPrice">￥{{ food.oldPrice }}</del>
                 </div>
               </div>
+              <div class="item-card">
+                <card-control :food="food"></card-control>
+              </div>
             </li>
           </ul>
         </li>
@@ -63,9 +66,13 @@
 <script>
 import { mapState } from 'vuex'
 import BScroll from '@better-scroll/core' // 引入滑动库
+import CardControl from 'components/CardControl'
 
 export default {
   name: 'ShopFoods',
+  components: {
+    CardControl
+  },
   data() {
     return {
       scrollY: 0, // 右边滑动距离
@@ -109,7 +116,8 @@ export default {
       // 初始化Bscroll对象
       this.detailScroll = new BScroll('.foods-detail', {
         probeType: 3,
-        scrollY: true
+        scrollY: true,
+        click: true
       })
       // 监听滑动事件,实时获取滑动距离
       this.detailScroll.on('scroll', ({ y }) => {
@@ -195,6 +203,7 @@ export default {
           align-items center
           padding px2rem(10) 0 px2rem(20) 0
           bottom-border-1px(#d3cdcd)
+          position relative
           .item-left
             flex 1
             >img
@@ -223,4 +232,8 @@ export default {
                 padding-left px2rem(5)
                 color $iconColor
                 font-size .8em
+          .item-card
+            position absolute
+            right px2rem(20)
+            bottom px2rem(20)
 </style>

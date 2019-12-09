@@ -9,8 +9,11 @@ import {
   UPDATE_SVG_TIME,
   RECEIVE_SHOP_FOODS,
   RECEIVE_SHOP_COMMENDS,
-  RECEIVE_SHOP_INFO
+  RECEIVE_SHOP_INFO,
+  ADD_FOOD_NUM,
+  DECREASE_FOOD_NUM
 } from './mutation-types' // 引入Mutation事件类型
+import Vue from 'vue'
 
 export default {
   [RECEIVE_ADDRESS](state, { address }) {
@@ -39,5 +42,13 @@ export default {
   },
   [RECEIVE_SHOP_INFO](state, { info }) {
     state.info = info
+  },
+  [ADD_FOOD_NUM](state, { food }) {
+    food['count'] ? food['count']++ : Vue.set(food, 'count', 1)
+  },
+  [DECREASE_FOOD_NUM](state, { food }) {
+    if (food['count']) {
+      food['count']--
+    }
   }
 }

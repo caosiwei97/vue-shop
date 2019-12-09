@@ -9,7 +9,9 @@ import {
   UPDATE_SVG_TIME,
   RECEIVE_SHOP_FOODS,
   RECEIVE_SHOP_COMMENDS,
-  RECEIVE_SHOP_INFO
+  RECEIVE_SHOP_INFO,
+  ADD_FOOD_NUM,
+  DECREASE_FOOD_NUM
 } from './mutation-types' // 引入Mutation事件类型
 
 export default {
@@ -108,5 +110,17 @@ export default {
         info: data['data']
       })
     }
+  },
+  // 更新食物数量
+  updateControlNum({ commit }, { isAdd, food }) {
+    isAdd
+      ? commit({
+          type: ADD_FOOD_NUM,
+          food
+        })
+      : commit({
+          type: DECREASE_FOOD_NUM,
+          food
+        })
   }
 }
