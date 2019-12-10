@@ -10,5 +10,6 @@ export default {
   timeNow: Date.now(),
   foodLists: [], // 商家食物列表
   commendLists: [], // 商家评论列表
-  info: {} // 商家信息
+  info: {}, // 商家信息
+  cartLists: [] // 购物车数组
 }

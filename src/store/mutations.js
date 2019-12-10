@@ -44,11 +44,19 @@ export default {
     state.info = info
   },
   [ADD_FOOD_NUM](state, { food }) {
-    food['count'] ? food['count']++ : Vue.set(food, 'count', 1)
+    if (!food['count']) {
+      Vue.set(food, 'count', 1)
+      state.cartLists.push(food)
+    } else {
+      food['count']++
+    }
   },
   [DECREASE_FOOD_NUM](state, { food }) {
     if (food['count']) {
       food['count']--
+      if (food['count'] === 0) {
+        state.cartLists.splice(state.cartLists.indexOf(food), 1)
+      }
     }
   }
 }

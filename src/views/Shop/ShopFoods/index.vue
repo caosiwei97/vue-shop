@@ -69,6 +69,8 @@
       @close="handleFoodClose"
     >
     </food-show>
+    <!-- 购物车 -->
+    <shop-cart></shop-cart>
   </div>
 </template>
 
@@ -77,12 +79,14 @@ import { mapState } from 'vuex'
 import BScroll from '@better-scroll/core' // 引入滑动库
 import CardControl from 'components/CardControl'
 import FoodShow from 'components/FoodShow'
+import ShopCart from '../components/ShopCart'
 
 export default {
   name: 'ShopFoods',
   components: {
     CardControl,
-    FoodShow
+    FoodShow,
+    ShopCart
   },
   data() {
     return {
