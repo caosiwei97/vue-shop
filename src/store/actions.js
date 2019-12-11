@@ -11,7 +11,8 @@ import {
   RECEIVE_SHOP_COMMENDS,
   RECEIVE_SHOP_INFO,
   ADD_FOOD_NUM,
-  DECREASE_FOOD_NUM
+  DECREASE_FOOD_NUM,
+  CLEAR_CART
 } from './mutation-types' // 引入Mutation事件类型
 
 export default {
@@ -88,8 +89,8 @@ export default {
         type: RECEIVE_SHOP_FOODS,
         foodLists: data['data']
       })
+      callback && callback()
     }
-    callback && callback()
   },
   // 请求商家评论列表
   async getCommendLists({ commit }) {
@@ -122,5 +123,9 @@ export default {
           type: DECREASE_FOOD_NUM,
           food
         })
+  },
+  // 清空购物车
+  clearCart({ commit }) {
+    commit({ type: CLEAR_CART })
   }
 }

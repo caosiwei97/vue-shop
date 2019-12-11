@@ -11,7 +11,8 @@ import {
   RECEIVE_SHOP_COMMENDS,
   RECEIVE_SHOP_INFO,
   ADD_FOOD_NUM,
-  DECREASE_FOOD_NUM
+  DECREASE_FOOD_NUM,
+  CLEAR_CART
 } from './mutation-types' // 引入Mutation事件类型
 import Vue from 'vue'
 
@@ -58,5 +59,13 @@ export default {
         state.cartLists.splice(state.cartLists.indexOf(food), 1)
       }
     }
+  },
+  [CLEAR_CART](state) {
+    // 清除count
+    state.cartLists.forEach(item => {
+      item.count = 0
+    })
+    // 清除数组
+    state.cartLists = []
   }
 }

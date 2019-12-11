@@ -22,39 +22,50 @@
         <div class="detail-wrapper">
           <h3 class="detail-header">
             <div class="header-left">购物车</div>
-            <div class="header-right">清空</div>
+            <div class="header-right" @click.stop="toggleAlert">清空</div>
           </h3>
-          <ul class="detail-list">
-            <li
-              class="list-item"
-              v-for="(item, index) in cartLists"
-              :key="index"
-            >
-              <div class="item-left">{{ item.name }}</div>
-              <div class="item-right">
-                <span class="right-price">￥{{ item.price }}</span>
-                <card-control :food="item"></card-control>
-              </div>
-            </li>
-          </ul>
+          <div class="detail-list-wrapper">
+            <ul class="detail-list">
+              <li
+                class="list-item"
+                v-for="(item, index) in cartLists"
+                :key="index"
+              >
+                <div class="item-left">{{ item.name }}</div>
+                <div class="item-right">
+                  <span class="right-price">￥{{ item.price }}</span>
+                  <card-control :food="item"></card-control>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </transition>
+    <base-confirm
+      @cancel="toggleAlert"
+      @confirm="handleConfirm"
+      v-show="isShowAlert"
+    ></base-confirm>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
 import CardControl from 'components/CardControl'
+import BScroll from '@better-scroll/core'
+import BaseConfirm from 'components/BaseConfirm'
 
 export default {
   name: 'ShopCart',
   components: {
-    CardControl
+    CardControl,
+    BaseConfirm
   },
   data() {
     return {
-      isShowDetail: false
+      isShowDetail: false,
+      isShowAlert: false
     }
   },
   computed: {
@@ -72,14 +83,34 @@ export default {
       }
     },
     isShowList() {
-      // if (this.totalCount === 0) {
-      //   this.isShowDetail = false
-      //   return false
-      // }
-      if (this.totalCount && !this.isShowDetail) {
+      if (this.totalCount === 0) {
         return false
       }
       return this.isShowDetail && this.totalCount
+    }
+  },
+  watch: {
+    totalCount(newValue) {
+      if (newValue === 0) {
+        this.isShowDetail = false
+      }
+    },
+    // 检测isShowDetail 变化来初始化Bscroll
+    isShowDetail(newValue) {
+      if (newValue) {
+        this.$nextTick(() => {
+          // 创建单例
+          if (!this.scroll) {
+            this.scroll = new BScroll('.detail-list-wrapper', {
+              click: true,
+              probeType: 3
+            })
+          } else {
+            // 解决初始化不滑动
+            this.scroll.refresh()
+          }
+        })
+      }
     }
   },
   methods: {
@@ -87,6 +118,13 @@ export default {
       if (this.totalCount !== 0) {
         this.isShowDetail = !this.isShowDetail
       }
+    },
+    toggleAlert() {
+      this.isShowAlert = !this.isShowAlert
+    },
+    handleConfirm() {
+      this.toggleAlert()
+      this.$store.dispatch('clearCart')
     }
   }
 }
@@ -186,16 +224,19 @@ export default {
         .header-right
           font-size .8em
           color $themeColor
-      .detail-list
-        .list-item
-          display flex
-          align-items center
-          justify-content space-between
-          padding px2rem(15) px2rem(10)
-          .item-right
+      .detail-list-wrapper
+        max-height px2rem(200)
+        overflow auto
+        .detail-list
+          .list-item
             display flex
             align-items center
-            .right-price
-              padding-right px2rem(10)
-              color red
+            justify-content space-between
+            padding px2rem(15) px2rem(10)
+            .item-right
+              display flex
+              align-items center
+              .right-price
+                padding-right px2rem(10)
+                color red
 </style>

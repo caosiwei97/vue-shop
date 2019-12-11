@@ -189,6 +189,8 @@ export default {
     .foods-category
       flex 1
       background $backgroundColor
+      height 100%
+      overflow hidden
       .category-list
         .list-item
           width 100%
@@ -209,6 +211,8 @@ export default {
           color $themeColor
     .foods-detail
       flex 4
+      height 100%
+      overflow hidden
       .detail-category
         .category-title
           padding px2rem(10) 0 px2rem(10) px2rem(10)
