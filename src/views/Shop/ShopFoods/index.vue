@@ -185,7 +185,7 @@ export default {
     background $white
     display flex
     width 100%
-    margin-top px2rem(1)
+    margin-top px2rem(10)
     .foods-category
       flex 1
       background $backgroundColor

@@ -93,13 +93,14 @@ export default {
     }
   },
   // 请求商家评论列表
-  async getCommendLists({ commit }) {
+  async getCommendLists({ commit }, callback) {
     const { data } = await this.$axios.getShopCommendListsApi()
     if (data.code === 0) {
       commit({
         type: RECEIVE_SHOP_COMMENDS,
         commendLists: data['data']
       })
+      callback && callback()
     }
   },
   // 请求商家详情
