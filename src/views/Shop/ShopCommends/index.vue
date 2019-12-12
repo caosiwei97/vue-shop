@@ -32,7 +32,7 @@
             @click="handleTypeClick(2)"
           >
             <span>全部</span>
-            <span>12</span>
+            <span>{{ filterCommendLists.get(2).length }}</span>
           </div>
           <div
             class="button-good button"
@@ -40,7 +40,7 @@
             @click="handleTypeClick(0)"
           >
             <span>满意</span>
-            <span>11</span>
+            <span>{{ filterCommendLists.get(0).length }}</span>
           </div>
           <div
             class="button-bad button"
@@ -48,7 +48,7 @@
             @click="handleTypeClick(1)"
           >
             <span>不满意</span>
-            <span>10</span>
+            <span>{{ filterCommendLists.get(1).length }}</span>
           </div>
         </div>
         <div class="header-button_bottom" @click="toggleShow">
@@ -72,7 +72,9 @@
             <div class="item-right">
               <p class="right-header">
                 <span class="header-username">{{ item.username }}</span>
-                <span class="header-time">{{ item.rateTime }}</span>
+                <span class="header-time">
+                  {{ item.rateTime | dateFormat }}
+                </span>
               </p>
               <p class="right-rate">
                 <base-stars :score="item.score" :size="24"></base-stars>
