@@ -78,7 +78,7 @@ export default {
           iconClassName: 'iconiconshopping'
         },
         {
-          title: '老曹外卖会员卡',
+          title: '美团外卖会员卡',
           iconColor: '#f90',
           iconClassName: 'iconhuiyuan'
         }

@@ -8,7 +8,7 @@
       <div class="login-wrapper">
         <!-- header title -->
         <div class="login-header">
-          <h2 class="header-title">文哲外卖</h2>
+          <h2 class="header-title">美团外卖</h2>
           <div class="header-content">
             <div
               href="#"

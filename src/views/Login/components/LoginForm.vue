@@ -45,7 +45,7 @@
     <!-- protocol -->
     <section class="form-protocol" v-show="!isPasswordWay">
       <p>
-        温馨提示：未注册文哲外卖帐号的手机号，登录时将自动注册，且代表已同意
+        温馨提示：未注册美团外卖帐号的手机号，登录时将自动注册，且代表已同意
         <a
           href="https://i.waimai.meituan.com/c/rules/%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E7%94%A8%E6%88%B7%E6%9C%8D%E5%8A%A1%E6%9D%A1%E6%AC%BE%E6%9C%80%E6%96%B0%E7%89%88.html"
           >《用户服务协议》</a
