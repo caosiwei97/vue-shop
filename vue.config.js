@@ -14,7 +14,7 @@ function addStyleResource(rule) {
 }
 
 module.exports = {
-  lintOnSave: true,
+  lintOnSave: process.env.NODE_ENV !== 'production',
   productionSourceMap: false,
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
