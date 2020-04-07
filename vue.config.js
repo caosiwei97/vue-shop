@@ -1,4 +1,6 @@
 const path = require('path')
+
+// 解析路径
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -27,11 +29,6 @@ module.exports = {
       .set('components', resolve('src/components'))
   },
   devServer: {
-    proxy: {
-      '/': {
-        target: process.env.VUE_APP_BASE, // 代理地址
-        changeOrigin: true // 是否支持跨域
-      }
-    }
+    proxy: process.env.VUE_APP_BASE // 代理地址
   }
 }

@@ -56,7 +56,8 @@ const errorHandle = (status, other) => {
 
 // 创建axios实例
 const instance = axios.create({
-  baseURL: '',
+  baseURL:
+    process.env.NODE_ENV === 'production' ? process.env.VUE_APP_BASE : '/',
   timeout: 1000 * SECONDS
 })
 
