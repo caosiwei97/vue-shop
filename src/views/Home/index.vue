@@ -33,7 +33,7 @@
 <script>
 import HeaderSlot from 'components/HeaderSlot'
 import HomeSwiper from './components/HomeSwiper'
-import HomeShoplist from './components/HomeShoplist'
+import HomeShoplist from './components/HomeShopList'
 import HomeShoplistTitle from './components/HomeShoplistTitle'
 import { mapState, mapActions } from 'vuex'
 
